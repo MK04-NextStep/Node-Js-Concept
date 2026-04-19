@@ -6,14 +6,22 @@ const connectDb = require("./Config/db");
 require('dotenv').config();
 const {apiLimit} = require('./MIddleware/rateLimitMiddleware');
 const loggerMiddleware = require("./MIddleware/loggerMiddleware")
+const cookieParser = require('cookie-parser');
+const cors = require('cors')
 
 const app = express();
 
-app.use(loggerMiddleware)
+app.use(loggerMiddleware);
 app.use(express.json());
+app.use(cookieParser());
+app.use(cors({
+    origin: process.env.ORIGIN,
+    credentials: true
+}))
+app.use("/api", apiLimit);
+
 app.use("/user", userRoutes);
-app.use(checkError)
-app.use("/api", apiLimit)
+app.use(checkError);
 
 app.get("/", (req,res) => {
     res.send("hello");

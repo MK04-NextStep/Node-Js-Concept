@@ -1,11 +1,19 @@
 const jstoken = require('jsonwebtoken');
-const { JWT_SECRET_KEY} = require("dotenv").config();
+require("dotenv").config();
 
-const generateToken= (id) => {
+const generateAccessToken= (id) => {
 
-    let token = jstoken.sign({userId: id}, JWT_SECRET_KEY, {expiresIn: "7d"})
+    let acess_token = jstoken.sign({userId: id},process.env.JWT_SECRET_KEY, {expiresIn: "7d"})
 
-    return token;
+    return acess_token;
 }
 
-module.exports = generateToken;
+const generateRefreshToken = (id) => {
+
+    let refresh_token = jstoken.sign({ userId: id}, process.env.REFRESH_SECRET_KEY, {
+        expiresIn: "7d"
+    })
+
+    return refresh_token
+}
+module.exports = { generateAccessToken, generateRefreshToken };

@@ -2,7 +2,7 @@ const user = require("../Model/userModel");
 const bcryptjs = require("bcryptjs");
 const { NewError } = require("../MIddleware/errorMiddleware");
 const removedPassword = require("../Utils/removePassword")
-const generateToken = require('../Utils/generateToken');
+const {generateAccessToken, generateRefreshToken} = require('../Utils/generateToken');
 const logger = require("../Utils/logger")
 
 
@@ -44,9 +44,8 @@ const loginUserService = async (username, password) => {
     }
 
     let data = removedPassword(existUser);
-    let token = generateToken(existUser._id);
 
-    return {data, token};
+    return data;
 }
 
 module.exports = { registerUserService, loginUserService }

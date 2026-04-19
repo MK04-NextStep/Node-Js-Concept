@@ -15,6 +15,9 @@ const userSchema = new mongoose.Schema({
         require: true,
         min: 8,
         max: 25
+    },
+    refreshToken: {
+        type: String
     }
 })
 
