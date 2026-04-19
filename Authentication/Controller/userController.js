@@ -1,15 +1,15 @@
+const jstoken = require('jsonwebtoken')
 const { validationResult } = require("express-validator");
-const { registerUserService, loginUserService } = require("../Service/userService");
-const { NewError } = require("../MIddleware/errorMiddleware");
-const user = require('../Model/userModel')
+
 const logger = require("../Utils/logger")
+const user = require('../Model/userModel')
+const { NewError } = require("../MIddleware/errorMiddleware");
+const { registerUserService, loginUserService } = require("../Service/userService");
 const {generateAccessToken, generateRefreshToken} = require('../Utils/generateToken')
 require('dotenv').config();
-const cookieParser = require('cookie-parser')
-const jstoken = require('jsonwebtoken')
+
 
 let getUser = async (req, res, next) => {
-
     let id = req.userId;
     let data = await user.findById( id );
 
@@ -38,7 +38,6 @@ let registerUser = async (req, res, next) => {
         message: "User registered",
         username: username
     })
-
     res.json({
         success: true,
         data: data
@@ -69,12 +68,10 @@ let loginUser = async (req, res, next) => {
         sameSite: "strict",
         maxAge: 7*24*60*60*1000
     })
-
     logger.info({
         message: "User logged in successfully",
         username: username
     })
-
     res.json({
         success: true,
         data: data,
@@ -92,7 +89,6 @@ const checkRefreshToken = (req, res, next) => {
         }
 
         const decoded = jstoken.verify(refreshToken, process.env.REFRESH_SECRET_KEY);
-
         const newAccessToken = generateAccessToken(decoded.id);
 
         res.json({

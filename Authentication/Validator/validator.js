@@ -6,9 +6,7 @@ let validation = [
     .isLength({min: 3, max: 20})
     .withMessage(" Username must be 3-20 characters")
     .matches(/^[a-zA-Z0-9_]+$/)
-    .withMessage("Username can only contain letters, numbers, underscore")
-    ,
-
+    .withMessage("Username can only contain letters, numbers, underscore"),
     body("password").trim()
     .notEmpty().withMessage("Password Required")
     .isLength({ min: 8, max: 25})

@@ -1,8 +1,8 @@
 const express = require('express');
-const userController = require('../Controller/userController');
 const validation = require("../Validator/validator");
 const asyncHandler = require('../Utils/asyncHandler');
 const {verifyToken} = require('../MIddleware/authMiddleware')
+const userController = require('../Controller/userController');
 const {loginLimit, registerLimit} = require('../MIddleware/rateLimitMiddleware')
 
 const route = express.Router();
