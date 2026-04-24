@@ -59,7 +59,7 @@ let resetPassword = async (req, res, next) => {
     if (!err.isEmpty()) {
         throw new NewError(err.array()[0].msg, 400);
     }
-    let { token } = req.params;
+    let { hashedToken } = req.params;
     if (!token) {
         throw new NewError("Invalid or expired token", 400)
     }
