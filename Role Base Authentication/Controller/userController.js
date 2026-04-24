@@ -60,17 +60,17 @@ let resetPassword = async (req, res, next) => {
         throw new NewError(err.array()[0].msg, 400);
     }
     let { hashedToken } = req.params;
-    if (!token) {
+    if (!hashedToken) {
         throw new NewError("Invalid or expired token", 400)
     }
 
-    let hashedToken = crypto
+    let token = crypto
         .createHash("sha256")
-        .update(token)
+        .update(hashedToken)
         .digest("hex")
 
     let existUser = await user.findOne({
-        resetToken: hashedToken,
+        resetToken: token,
         resetTokenExpiry: { $gt: Date.now() }
     })
     let { password } = req.body;
