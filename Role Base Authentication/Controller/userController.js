@@ -50,7 +50,7 @@ let verifyEmail = async (req, res, next) => {
     res.json({
         success: true,
         message: "If email exist, reset link sent",
-        link: `${process.env.RESEST_PASSWORD_URL}/user/reset-password/${token}`
+        link: `${process.env.RESEST_PASSWORD_URL}/user/reset-password/${hashedToken}`
     })
 }
 
