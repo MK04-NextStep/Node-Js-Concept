@@ -192,14 +192,3 @@ BASE_URL=http://localhost:5000
 Built as a backend learning project to understand **real-world authentication & authorization systems**.
 
 ---
-
-## Final Note
-
-This project demonstrates:
-
-* Clean backend architecture
-* Security best practices
-* Real-world RBAC implementation
-
-👉 Suitable for **internships and backend roles**
-
