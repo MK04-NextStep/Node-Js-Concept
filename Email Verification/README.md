@@ -171,7 +171,3 @@ This project demonstrates:
 * Logging & error management
 
 ---
-
-
-Give it a ⭐ on GitHub!
-
