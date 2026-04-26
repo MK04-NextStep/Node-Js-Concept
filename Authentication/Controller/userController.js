@@ -14,7 +14,7 @@ let getUser = async (req, res, next) => {
     let data = await user.findById( id );
 
     if(!data){
-        return next("no data found", 400);
+        return next(new NewError("no data found", 400));
     }
 
     res.json({
